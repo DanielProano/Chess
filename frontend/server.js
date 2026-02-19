@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 
 app.use("/chess/assets", express.static(path.join(__dirname, "dist/assets")));
 
-app.use("/chess/*", (req, res) => {
+app.use("/chess/*splat", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
