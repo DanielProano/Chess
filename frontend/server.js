@@ -24,9 +24,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, "dist")));
+app.use("/chess/",express.static(path.join(__dirname, "dist")));
 
-app.get("/*splat", (req, res) => {
+app.get("/chess/", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
