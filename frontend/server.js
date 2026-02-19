@@ -11,11 +11,15 @@ const PORT = process.env.PORT || 5173;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use("/chess", express.static(path.join(__dirname, "dist")));
+app.use("/chess/assets", express.static(path.join(__dirname, "dist/assets")));
 
-app.use("/chess", (req, res) => {
+app.use("/chess/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"));
 });
+
+app.get("/chess", (req, res) => {
+  res.redirect("/chess/");
+})
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Frontend running on port ${PORT}`);
