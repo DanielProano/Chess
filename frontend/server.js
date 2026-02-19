@@ -13,13 +13,13 @@ const __dirname = path.dirname(__filename);
 
 app.use("/chess/assets", express.static(path.join(__dirname, "dist/assets")));
 
-app.use("/chess/*splat", (req, res) => {
+app.get("/chess", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
-app.get("/chess", (req, res) => {
-  res.redirect("/chess/");
-})
+app.use("/chess/*splat", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/index.html"));
+});
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Frontend running on port ${PORT}`);
