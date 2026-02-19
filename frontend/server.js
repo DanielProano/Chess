@@ -11,13 +11,9 @@ const PORT = process.env.PORT || 5173;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use("/chess/assets", express.static(path.join(__dirname, "dist/assets")));
+app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("/chess", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/index.html"));
-});
-
-app.use("/chess/*splat", (req, res) => {
+app.get((req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
